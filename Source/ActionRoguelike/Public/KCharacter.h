@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "KCharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class ACTIONROGUELIKE_API AKCharacter : public ACharacter
 {
@@ -16,9 +19,17 @@ public:
 	AKCharacter();
 
 protected:
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* CameraComp;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void MoveForward(float Value);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
